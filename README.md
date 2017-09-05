@@ -3,8 +3,7 @@
 Tiny library to draw connections between DOM element.
 Still proof of concept, under development.
 
-
-### NPM scripts
+## NPM scripts
 
  - `npm t`: Run test suite
  - `npm start`: Runs `npm run build` in watch mode
@@ -12,12 +11,42 @@ Still proof of concept, under development.
  - `npm run test:prod`: Run linting and generate coverage
  - `npm run build`: Generage bundles and typings, create docs
  - `npm run lint`: Lints code
- - `npm run commit`: Commit using conventional commit style ([husky](https://github.com/typicode/husky) will tell you to use it if you haven't :wink:)
 
+## Build and test
+
+ - `npm run build`
+ - `open example/index.html`
+
+ Also visible [here](http://xilinus.com/dom-connector/index.html)
+
+## Usage
+
+ ```css
+#e1, #e2 {
+  width: 100px;
+  height: 100px;
+  margin: 20px;
+  background-color: #DDD;
+}
+ ```
+
+ ``` html
+<div id="e1"></div>
+<div id="e2"></div>
+ ```
+
+ ``` js
+ const connector = DomConnector.connect(
+   document.getElementById('e1'),
+   document.getElementById('e2'),
+   { from: 'bottom-middle', to: 'top-middle', className: 'line-join' }
+ );
+ ```
 
 ## Credits
 
+  Sébastien Gruhier <sgruhier@gmail.com>
 
 ## Boilerplate
 
-Based on https://github.com/alexjoverm/typescript-library-starter starter kit
+Based on https://github.com/alexjoverm/typescript-library-starter starter kit with some modifications
