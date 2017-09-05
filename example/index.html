@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>DOM Connector demo</title>
+  <style>
+    #e1 {
+      width: 100px;
+      height: 100px;
+      background: #DDD;
+      margin-left: calc(50% - 50px);
+      text-align: center;
+      line-height: 100px;
+
+    }
+    #e2 {
+      width: 100px;
+      height: 100px;
+      background: #EEE;
+      position: absolute;
+      top: 300px;
+      left: 100px;
+      text-align: center;
+      line-height: 100px;
+    }
+    #container {
+      position: relative;
+      margin: 100px;
+      padding: 10px;
+      border: 5px solid #EEE;
+    }
+    line.line-join {
+      stroke: green;
+      stroke-width: 1px;
+    }
+    line.line-join2 {
+      stroke: red;
+      stroke-width:21px;
+    }
+    p {
+      text-align: center;
+    }
+  </style>
+
+</head>
+<body>
+  <p>You can resize the browser</p>
+  <div id="container">
+    <div id="e1">I'm fixed</div>
+  </div>
+  <div id="e2">Drag me</div>
+  <script src="../dist/dom-connector-library.js"></script>
+  <script>
+    const c1 = DomConnector.connect(document.getElementById('e1'), document.getElementById('e2'), { from: 'bottom-middle', to: 'top-middle', className: 'line-join' });
+
+    document.getElementById('e2').addEventListener('mousedown', (event) => {
+      var dx = event.pageX - event.target.offsetLeft
+      var dy = event.pageY - event.target.offsetTop
+
+      let mouseMove = (event) => {
+        document.getElementById('e2').style.left = event.clientX - dx + 'px';
+        document.getElementById('e2').style.top = event.clientY - dy + 'px';
+        c1.update();
+      };
+      document.addEventListener('mousemove', mouseMove)
+      document.addEventListener('mouseup', (event) => {
+        document.removeEventListener('mousemove', mouseMove);
+      });
+      event.stopPropagation();
+      event.preventDefault();
+      return false;
+    })
+  </script>
+</body>
+</html>
