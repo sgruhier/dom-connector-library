@@ -26,6 +26,15 @@ export class DOMConnectors {
   private static instance: DOMConnectors
   private connectors: DOMConnector[] = []
 
+  // To protect from instantion, singleton pattern
+  private constructor() {
+    window.addEventListener(
+      "resize",
+      this.debounce(this.update.bind(this), DOMConnectors.DebounceDelay),
+      false
+    )
+  }
+
   public static getInstance() {
     if (!DOMConnectors.instance) {
       DOMConnectors.instance = new DOMConnectors()
@@ -39,15 +48,6 @@ export class DOMConnectors {
 
   public update() {
     this.connectors.forEach((connector: DOMConnector) => connector.update())
-  }
-
-  // To protect from instantion, singleton pattern
-  private constructor() {
-    window.addEventListener(
-      "resize",
-      this.debounce(this.update.bind(this), DOMConnectors.DebounceDelay),
-      false
-    )
   }
 
   // Adhock debounce method, don't care about arugments
