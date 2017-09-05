@@ -1,18 +1,9 @@
 {
-  "extends": "tslint:latest",
+  "extends": [
+    "tslint-config-standard",
+    "tslint-config-prettier"
+  ],
   "rules": {
-    "max-line-length": [
-      true
-    ],
-    "member-ordering": [false],
-    "max-classes-per-file": [false],
-    "arrow-parens": [true, "ban-single-arg-parens"],
-    "object-literal-sort-keys": false,
-    "object-literal-shorthand": false,
-    "quotemark": [
-      true,
-      "single",
-      "avoid-escape"
-    ]
+    "member-ordering": [false]
   }
 }
