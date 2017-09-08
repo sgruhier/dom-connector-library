@@ -73,6 +73,12 @@ export class DOMConnector {
     DOMConnectors.getInstance().add(this)
   }
 
+  public destroy() {
+    if (this.svg && this.svg.parentElement) {
+      this.svg.parentElement.removeChild(this.svg)
+    }
+  }
+
   public update() {
     const lineInfo = this.computeLineAttribute()
     this.updateNode(
