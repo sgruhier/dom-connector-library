@@ -208,7 +208,16 @@ export class DOMConnector {
         xPos += element.offsetLeft - xScroll + element.clientLeft
         yPos += element.offsetTop - yScroll + element.clientTop
       } else {
-        // for all other non-BODY elements
+        // Not define on SVG element for example
+        if (typeof element.offsetLeft === "undefined") {
+          xPos += bounds.left
+          yPos += bounds.top
+          break
+        } else {
+          // for all other non-BODY elements
+          xPos += element.offsetLeft - element.scrollLeft + element.clientLeft
+          yPos += element.offsetTop - element.scrollTop + element.clientTop
+        }
         xPos += element.offsetLeft - element.scrollLeft + element.clientLeft
         yPos += element.offsetTop - element.scrollTop + element.clientTop
       }
