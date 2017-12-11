@@ -51,9 +51,9 @@
     <div id="e1">I'm fixed</div>
   </div>
   <div id="e2">Drag me</div>
-  <script src="../dist/dom-connector-library.js"></script>
+  <script src="../dist/dom-connector-library.umd.js"></script>
   <script>
-    const c1 = DomConnector.connect(document.getElementById('e1'), document.getElementById('e2'), { from: 'bottom-middle', to: 'top-middle', className: 'line-join' });
+    const c1 = this['dom-connector-library'].connect(document.getElementById('e1'), document.getElementById('e2'), { from: 'bottom-middle', to: 'top-middle', className: 'line-join' });
 
     document.getElementById('e2').addEventListener('mousedown', (event) => {
       var dx = event.pageX - event.target.offsetLeft

@@ -194,42 +194,41 @@ export class DOMConnector {
 
   private getPosition(element: any) {
     // From https://www.kirupa.com/html5/get_element_position_using_javascript.htm
-    let xPos = 0
-    let yPos = 0
+    // let xPos = 0
+    // let yPos = 0
     const bounds = element.getBoundingClientRect()
 
-    while (element) {
-      if (element.tagName === "BODY") {
-        // deal with browser quirks with body/window/document and page scroll
-        const xScroll =
-          element.scrollLeft || document.documentElement.scrollLeft
-        const yScroll = element.scrollTop || document.documentElement.scrollTop
+    // while (element) {
+    //   if (element.tagName === "BODY") {
+    //     // deal with browser quirks with body/window/document and page scroll
+    //     const xScroll =
+    //       element.scrollLeft || document.documentElement.scrollLeft
+    //     const yScroll = element.scrollTop || document.documentElement.scrollTop
 
-        xPos += element.offsetLeft - xScroll + element.clientLeft
-        yPos += element.offsetTop - yScroll + element.clientTop
-      } else {
-        // Not define on SVG element for example
-        if (typeof element.offsetLeft === "undefined") {
-          xPos += bounds.left
-          yPos += bounds.top
-          break
-        } else {
-          // for all other non-BODY elements
-          xPos += element.offsetLeft - element.scrollLeft + element.clientLeft
-          yPos += element.offsetTop - element.scrollTop + element.clientTop
-        }
-        xPos += element.offsetLeft - element.scrollLeft + element.clientLeft
-        yPos += element.offsetTop - element.scrollTop + element.clientTop
-      }
+    //     xPos += element.offsetLeft - xScroll + element.clientLeft
+    //     yPos += element.offsetTop - yScroll + element.clientTop
+    //   } else {
+    //     // Not define on SVG element for example
+    //     if (typeof element.offsetLeft === "undefined") {
+    //       xPos += bounds.left
+    //       yPos += bounds.top
+    //       break
+    //     } else {
+    //       // for all other non-BODY elements
+    //       xPos += element.offsetLeft - element.scrollLeft + element.clientLeft
+    //       yPos += element.offsetTop - element.scrollTop + element.clientTop
+    //     }
+    //   }
 
-      element = element.offsetParent
-    }
-    return {
-      x: xPos,
-      y: yPos,
-      width: bounds.width,
-      height: bounds.height
-    }
+    //   element = element.offsetParent
+    // }
+    // return {
+    //   x: xPos,
+    //   y: yPos,
+    //   width: bounds.width,
+    //   height: bounds.height
+    // }
+    return bounds
   }
 }
 
